@@ -1,64 +1,57 @@
 /**
  * Static Keyword
+ * 지금까지 정의했던 모든 프로퍼티 및 메소드는 인스턴스에 속하는 것이다.
+ * 하지만 클래스 자체에 속하는 프로퍼티 및 메소드를 정의할 수도 있다. 그것이 바로 static 키워드이다.
+ * python의 @staticmethod와 비슷하다.
  */
-// class IdolModel {
-//     name;
-//     year;
-//     static groupName = '아이브';
+class IdolModel {
+  name;
+  year;
+  static groupName = "아이브";
 
-//     constructor(name, year) {
-//         this.name = name;
-//         this.year = year;
-//     }
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
 
-//     static returnGroupName(){
-//         return '아이브';
-//     }
-// }
+  static returnGroupName() {
+    return "아이브";
+  }
+}
 
-// const yuJin = new IdolModel('안유진', 2003);
-// console.log(yuJin);
+const yuJin = new IdolModel("안유진", 2003);
+console.log(yuJin);
+console.log(yuJin.groupName); // undefined
 
-// console.log(IdolModel.groupName);
-// console.log(IdolModel.returnGroupName());
+console.log(IdolModel.groupName);
+console.log(IdolModel.returnGroupName());
 
 /**
  * factory constructor
  */
-class IdolModel{
-    name;
-    year;
+class IdolModel {
+  name;
+  year;
 
-    constructor(name, year){
-        this.name = name;
-        this.year = year;
-    }
+  constructor(name, year) {
+    this.name = name;
+    this.year = year;
+  }
 
-    static fromObject(object){
-        return new IdolModel(
-            object.name,
-            object.year,
-        );
-    }
+  static fromObject(object) {
+    return new IdolModel(object.name, object.year);
+  }
 
-    static fromList(list){
-        return new IdolModel(
-            list[0],
-            list[1],
-        );
-    }
+  static fromList(list) {
+    return new IdolModel(list[0], list[1]);
+  }
 }
 
 const yuJin2 = IdolModel.fromObject({
-    name: '안유진',
-    year: 2003,
+  name: "안유진",
+  year: 2003,
 });
 console.log(yuJin2);
 
-const wonYoung = IdolModel.fromList(
-    [
-        '장원영',
-        2003,
-    ]
-);
+const wonYoung = IdolModel.fromList(["장원영", 2003]);
 console.log(wonYoung);
