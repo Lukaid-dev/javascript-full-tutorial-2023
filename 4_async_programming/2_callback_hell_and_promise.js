@@ -2,35 +2,35 @@
  * Callback
  */
 function waitAndRun() {
-    setTimeout(() => {
-        console.log('끝');
-    }, 2000);
+  setTimeout(() => {
+    console.log("끝");
+  }, 2000);
 }
 
 // waitAndRun();
 
 function waitAndRun2() {
-    setTimeout(
-        () => {
-            console.log('1번 콜백 끝');
-            setTimeout(() => {
-                console.log('2번 콜백 끝');
-                setTimeout(() => {
-                    console.log('3번 콜백 끝');
-                }, 2000);
-            }, 2000);
-        }, 2000);
+  setTimeout(() => {
+    console.log("1번 콜백 끝");
+    setTimeout(() => {
+      console.log("2번 콜백 끝");
+      setTimeout(() => {
+        console.log("3번 콜백 끝");
+      }, 2000);
+    }, 2000);
+  }, 2000);
 }
 
 // waitAndRun2();
 
 /**
  * Promise
+ * callback hell을 해결하기 위한 방법
  */
 const timeoutPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve('완료');
-    }, 2000);
+  setTimeout(() => {
+    resolve("완료");
+  }, 2000);
 });
 
 // timeoutPromise.then((res) => {
@@ -38,34 +38,32 @@ const timeoutPromise = new Promise((resolve, reject) => {
 //     console.log(res);
 // });
 
-const getPromise = (seconds) => new Promise((resolve, reject) => {
+const getPromise = (seconds) =>
+  new Promise((resolve, reject) => {
     setTimeout(() => {
-        // if(xxx){
-        //     resolve('성공')
-        // }else{
-        //     reject('에러');
-        // }
-        resolve('에러');
+      // if(xxx){
+      //     resolve('성공')
+      // }else{
+      //     reject('에러');
+      // }
+      resolve("성공");
+      resolve("에러");
     }, seconds * 1000);
-});
+  });
 
 // getPromise(3)
-//     .then((res) => {
-//         console.log('--- first then ---');
-//         console.log(res);
-//     })
-//     .catch((res)=>{
-//         console.log('--- first catch ---');
-//         console.log(res);
-//     })
-//     .finally(()=>{
-//         console.log('--- finally ---');
-//     });
+//   .then((res) => {
+//     console.log("--- first then ---");
+//     console.log(res);
+//   })
+//   .catch((res) => {
+//     console.log("--- first catch ---");
+//     console.log(res);
+//   })
+//   .finally(() => {
+//     console.log("--- finally ---");
+//   });
 
-Promise.all([
-    getPromise(1),
-    getPromise(4),
-    getPromise(1),
-]).then((res)=>{
-    console.log(res);
+Promise.all([getPromise(1), getPromise(4), getPromise(1)]).then((res) => {
+  console.log(res);
 });
