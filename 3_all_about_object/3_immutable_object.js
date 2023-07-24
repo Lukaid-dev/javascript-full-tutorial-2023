@@ -2,17 +2,17 @@
  * Immutable Object
  */
 const yuJin = {
-    name: '안유진',
-    year: 2003,
+  name: "안유진",
+  year: 2003,
 
-    get age(){
-        return new Date().getFullYear() - this.year;
-    },
+  get age() {
+    return new Date().getFullYear() - this.year;
+  },
 
-    set age(age){
-        this.year = new Date().getFullYear() - age;
-    }
-}
+  set age(age) {
+    this.year = new Date().getFullYear() - age;
+  },
+};
 
 console.log(yuJin);
 
@@ -21,96 +21,96 @@ console.log(yuJin);
  */
 console.log(Object.isExtensible(yuJin));
 
-yuJin['position'] = 'vocal';
+yuJin["position"] = "vocal";
 
 console.log(yuJin);
 
-Object.preventExtensions(yuJin);
+Object.preventExtensions(yuJin); // 프로퍼티 추가 금지, 확장 금지
 
 console.log(Object.isExtensible(yuJin));
 
-yuJin['groupName'] = '아이브';
+yuJin["groupName"] = "아이브";
 console.log(yuJin);
 
-delete yuJin['position'];
+delete yuJin["position"]; // 삭제는 가능
 console.log(yuJin);
 
 /**
  * Seal
  */
 const yuJin2 = {
-    name: '안유진',
-    year: 2003,
+  name: "안유진",
+  year: 2003,
 
-    get age(){
-        return new Date().getFullYear() - this.year;
-    },
+  get age() {
+    return new Date().getFullYear() - this.year;
+  },
 
-    set age(age){
-        this.year = new Date().getFullYear() - age;
-    }
-}
+  set age(age) {
+    this.year = new Date().getFullYear() - age;
+  },
+};
 console.log(yuJin2);
 
 console.log(Object.isSealed(yuJin2));
 
-Object.seal(yuJin2);
+Object.seal(yuJin2); // 프로퍼티 추가 금지, 확장 금지, 프로퍼티 삭제 금지, configurable을 false로 변경
 
 console.log(Object.isSealed(yuJin2));
 
-yuJin2['groupName'] = '아이브';
+yuJin2["groupName"] = "아이브";
 console.log(yuJin2);
 
-delete yuJin2['name'];
+delete yuJin2["name"];
 console.log(yuJin2);
 
-Object.defineProperty(yuJin2, 'name', {
-    writable: false,
+Object.defineProperty(yuJin2, "name", {
+  writable: false,
 });
-console.log(Object.getOwnPropertyDescriptor(yuJin2, 'name'));
+console.log(Object.getOwnPropertyDescriptor(yuJin2, "name"));
 
 /**
  * Freezed
- * 
- * 읽기 외에 모든 기능을 불가능하게 만든다.
+ *
+ * 읽기 외에 모든 기능을 불가능하게 만든다. enum으로 활용.
  */
 const yuJin3 = {
-    name: '안유진',
-    year: 2003,
+  name: "안유진",
+  year: 2003,
 
-    get age(){
-        return new Date().getFullYear() - this.year;
-    },
+  get age() {
+    return new Date().getFullYear() - this.year;
+  },
 
-    set age(age){
-        this.year = new Date().getFullYear() - age;
-    }
-}
+  set age(age) {
+    this.year = new Date().getFullYear() - age;
+  },
+};
 console.log(Object.isFrozen(yuJin3));
 
 Object.freeze(yuJin3);
 console.log(Object.isFrozen(yuJin3));
 
-yuJin3['groupName'] = '아이브';
+yuJin3["groupName"] = "아이브";
 console.log(yuJin3);
 
-delete yuJin3['name'];
+delete yuJin3["name"];
 console.log(yuJin3);
 
 // Object.defineProperty(yuJin3, 'name', {
 //     value: '코드팩토리',
 // })
-console.log(Object.getOwnPropertyDescriptor(yuJin3, 'name'));
+console.log(Object.getOwnPropertyDescriptor(yuJin3, "name"));
 
 const yuJin4 = {
-    name: '안유진',
-    year: 2003,
-    wonYoung: {
-        name: '장원영',
-        year: 2002,
-    },
+  name: "안유진",
+  year: 2003,
+  wonYoung: {
+    name: "장원영",
+    year: 2002,
+  },
 };
 Object.freeze(yuJin4);
 
 console.log(Object.isFrozen(yuJin4));
-console.log(Object.isFrozen(yuJin4['wonYoung']));
+console.log(Object.isFrozen(yuJin4["wonYoung"]));
